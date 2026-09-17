@@ -142,8 +142,12 @@ def test_rank_order_encoder_num_steps():
 
 
 def test_rank_order_encoder_feeding_a_neuron():
-    """The encoder is stateless; it should chain into any recurrent layer
-    exactly like the other encoders in this file."""
+    """
+    Confirm the encoder is stateless.
+
+    It should chain into any recurrent layer exactly like the other
+    encoders in this file.
+    """
     data = torch.rand(4, 6)
     net = torch.nn.Sequential(RankOrderEncoder(), LIFRecurrent(6, 3))
     out, _ = net(data)

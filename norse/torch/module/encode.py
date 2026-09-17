@@ -234,11 +234,13 @@ class SpikeLatencyEncoder(torch.nn.Module):
 
 
 class RankOrderEncoder(torch.nn.Module):
-    """Encodes a static input by its rank order: the largest-valued
-    elements fire earliest, the smallest fire latest (or not at all, if
-    there are more elements than ``num_steps``). No neuron simulation is
-    involved -- each element fires exactly one spike, at the time step
-    equal to its descending-magnitude rank.
+    """
+    Encode a static input by its rank order.
+
+    The largest-valued elements fire earliest, the smallest fire latest
+    (or not at all, if there are more elements than ``num_steps``). No
+    neuron simulation is involved -- each element fires exactly one
+    spike, at the time step equal to its descending-magnitude rank.
 
     See `S. Thorpe & J. Gautrais (1998): Rank Order Coding
     <https://doi.org/10.1007/978-1-4615-4831-7_19>`_.
@@ -250,13 +252,17 @@ class RankOrderEncoder(torch.nn.Module):
                 [0., 0., 1.],
                 [0., 1., 0.]])
 
-    Parameters:
-        num_steps (Optional[int]): Number of time steps in the resulting
-            spike train. Elements ranked ``num_steps`` or later never
-            fire. Defaults to the size of the input's last dimension.
+    Parameters
+    ----------
+    num_steps : Optional[int]
+        Number of time steps in the resulting spike train. Elements
+        ranked ``num_steps`` or later never fire. Defaults to the size
+        of the input's last dimension.
+
     """
 
     def __init__(self, num_steps: Union[int, None] = None):
+        """Construct a :class:`RankOrderEncoder`; see the class docstring for parameters."""
         super(RankOrderEncoder, self).__init__()
         self.num_steps = num_steps
 
