@@ -156,9 +156,7 @@ def test_poisson_encode():
 
 def test_rank_order_encode_matches_docstring_example():
     data = torch.as_tensor([0.9, 0.1, 0.5])
-    expected = torch.tensor(
-        [[1.0, 0.0, 0.0], [0.0, 0.0, 1.0], [0.0, 1.0, 0.0]]
-    )
+    expected = torch.tensor([[1.0, 0.0, 0.0], [0.0, 0.0, 1.0], [0.0, 1.0, 0.0]])
     assert torch.equal(rank_order_encode(data), expected)
 
 
